@@ -4,7 +4,15 @@ type Todo {
     completed: Boolean
 }
 
+type Member {
+    id: ID
+    name: String!
+}
+
 type Query {
     getTodo(id: String!): Todo
     getTodos: [Todo]
+
+    getMember(id: String!): Member
+    getMembers: [Member]
 }
