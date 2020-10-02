@@ -1,27 +1,28 @@
 package com.redv.graphqltest.resolver;
 
 import com.redv.graphqltest.models.Todo;
+import com.redv.graphqltest.repo.TodoRepository;
 import graphql.kickstart.tools.GraphQLQueryResolver;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class TodoResolver implements GraphQLQueryResolver {
-  public Todo todo1 = new Todo("1", "Get stuff done", false);
-  public Todo todo2 = new Todo("2", "Stuff I did", true);
-  public List<Todo> todoList = Arrays.asList(todo1, todo2);
+  @Autowired
+  private TodoRepository todoRepository;
 
-  public Todo getTodo(String id) {
-    return todoList.stream()
-      .filter(todo -> todo.getId().equals(id))
-      .collect(Collectors.toList())
-      .get(0);
+  @Autowired
+  public void setTodoRepository(TodoRepository todoRepository) {
+    this.todoRepository = todoRepository;
+  }
+
+  public Todo getTodo(Long id) {
+    return todoRepository.findById(id).orElse(null);
   }
 
   public List<Todo> getTodos() {
-    return todoList;
+    return todoRepository.findAll();
   }
 }

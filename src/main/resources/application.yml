@@ -3,3 +3,25 @@ graphql:
     mapping: /graphql
     enabled: true
     corsEnabled: true
+graphiql:
+  mapping: /graphiql
+  endpoint:
+    graphql: /graphql
+    static:
+      basePath: /
+      enabled: true
+      pageTitle: GraphiQL
+      cdn:
+        enabled: false
+        version: 0.13.0
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:graphqltest;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    platform: h2
+    username: graphqltest
+    password:
+  output:
+    ansi:
+      enabled: always

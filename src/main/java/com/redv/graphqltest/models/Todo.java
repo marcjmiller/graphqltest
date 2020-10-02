@@ -13,7 +13,7 @@ import javax.persistence.Id;
 @Data
 public class Todo {
   @Id
-  private String id;
+  private Long id;
   private String text;
   private Boolean completed;
 }

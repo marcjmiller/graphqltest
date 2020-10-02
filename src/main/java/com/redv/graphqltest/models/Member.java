@@ -13,6 +13,6 @@ import javax.persistence.Id;
 @Data
 public class Member {
   @Id
-  public String id;
+  public Long id;
   public String name;
 }
