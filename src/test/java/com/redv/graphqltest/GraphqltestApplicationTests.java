@@ -1,4 +1,4 @@
-package com.qraphqltest.graphqltest;
+package com.redv.graphqltest;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
