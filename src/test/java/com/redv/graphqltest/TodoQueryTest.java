@@ -18,7 +18,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @GraphQLTest
-public class TodoQueryTest {
+public class TodoQueryTest extends BaseIntegrationTest {
   @Autowired
   private GraphQLTestTemplate graphQLTestTemplate;
 

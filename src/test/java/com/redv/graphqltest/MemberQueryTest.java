@@ -18,9 +18,9 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @GraphQLTest
-public class MemberQueryTest {
+public class MemberQueryTest extends BaseIntegrationTest {
   @Autowired
-  GraphQLTestTemplate graphQLTestTemplate;
+  private GraphQLTestTemplate graphQLTestTemplate;
 
   @MockBean
   private MemberRepository memberRepository;
