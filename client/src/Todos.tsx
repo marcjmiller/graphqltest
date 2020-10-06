@@ -5,7 +5,7 @@ interface TodoData {
   todos: Array<{ id: number, text: string, completed: boolean }>;
 }
 
-const TODO_QUERY = gql`
+export const TODO_QUERY = gql`
     {
         todos {
             id
@@ -34,8 +34,9 @@ const Todos: React.FC = () => {
               <tbody>
               {data.todos.map(todo => (
                 <tr key={todo.id}>
-                  <td>{todo.text}</td>
-                  <td><input type={'checkbox'} name={'completed'} checked={todo.completed}/></td>
+                  <td data-testid={'todo-text'}>{todo.text}</td>
+                  <td data-testid={'todo-completed'}><input type={'checkbox'} name={'completed'}
+                                                            checked={todo.completed} readOnly/></td>
                 </tr>
               ))}
               </tbody>
