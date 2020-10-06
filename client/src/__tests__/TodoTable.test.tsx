@@ -1,4 +1,4 @@
-import Todos, { TODO_QUERY } from '../Todos';
+import TodoTable, { TODO_QUERY } from '../Components/TodoTable';
 import React from 'react';
 import { render, cleanup, findByTestId, waitForElement } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
@@ -22,20 +22,20 @@ const mocks = [
   },
 ];
 
-describe('Todos tests', () => {
+describe('TodoTable tests', () => {
   afterEach(cleanup);
 
   it('should render without error', async () => {
     const { getByTestId } = render(
       <MockedProvider mocks={mocks} addTypename={false}>
-        <Todos/>
+        <TodoTable/>
       </MockedProvider>,
     );
 
-    const todoTextElement = await waitForElement(() => getByTestId(`todo-text`));
+    const todoTextElement = await waitForElement(() => getByTestId('todo-text'));
     const todoCompletedElement = await waitForElement(() => getByTestId('todo-completed'));
 
-    expect(todoTextElement).toBeTruthy();
+    expect(todoTextElement.textContent).toEqual('Get stuff done');
     expect(todoCompletedElement).toBeTruthy();
   });
 });

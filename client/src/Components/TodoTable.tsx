@@ -1,5 +1,6 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
+import Todo from './Todo';
 
 interface TodoData {
   todos: Array<{ id: number, text: string, completed: boolean }>;
@@ -15,7 +16,7 @@ export const TODO_QUERY = gql`
     }
 `;
 
-const Todos: React.FC = () => {
+const TodoTable: React.FC = () => {
   const { loading, error, data } = useQuery<TodoData>(TODO_QUERY);
 
   return (
@@ -33,17 +34,14 @@ const Todos: React.FC = () => {
               </thead>
               <tbody>
               {data.todos.map(todo => (
-                <tr key={todo.id}>
-                  <td data-testid={'todo-text'}>{todo.text}</td>
-                  <td data-testid={'todo-completed'}><input type={'checkbox'} name={'completed'}
-                                                            checked={todo.completed} readOnly/></td>
-                </tr>
+                <Todo todo={todo} key={todo.id}/>
               ))}
               </tbody>
             </table>
-            : null}
+            : null
+      }
     </div>
   );
 };
 
-export default Todos;
+export default TodoTable;

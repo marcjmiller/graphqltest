@@ -1,7 +1,7 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/client';
 import client from './apolloClient';
-import Todos from './Todos';
+import TodoTable from './Components/TodoTable';
 
 const App = () => {
   return (
@@ -11,7 +11,7 @@ const App = () => {
           To dos, powered by React, GraphQL, and Apollo.
         </p>
       </div>
-      <Todos/>
+      <TodoTable/>
     </ApolloProvider>
   );
 };
