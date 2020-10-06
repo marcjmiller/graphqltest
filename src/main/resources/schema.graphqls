@@ -4,8 +4,16 @@ type Todo {
     completed: Boolean
 }
 
+input CreateTodoInput {
+    text: String!
+}
+
 type Member {
     id: ID
+    name: String!
+}
+
+input CreateMemberInput {
     name: String!
 }
 
@@ -15,4 +23,13 @@ type Query {
 
     member(id: String!): Member
     members: [Member]
+}
+
+type Mutation {
+    createTodo(input: CreateTodoInput!): Todo!
+    completeTodo(id: Int!): Todo!
+    deleteTodo(id: Int!): Int!
+
+    createMember(input: CreateMemberInput!): Member!
+    deleteMember(id: Int!): Int!
 }
