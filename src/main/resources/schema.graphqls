@@ -10,9 +10,9 @@ type Member {
 }
 
 type Query {
-    getTodo(id: String!): Todo
-    getTodos: [Todo]
+    todo(id: String!): Todo
+    todos: [Todo]
 
-    getMember(id: String!): Member
-    getMembers: [Member]
+    member(id: String!): Member
+    members: [Member]
 }

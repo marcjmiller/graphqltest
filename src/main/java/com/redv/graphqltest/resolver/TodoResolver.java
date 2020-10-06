@@ -18,11 +18,11 @@ public class TodoResolver implements GraphQLQueryResolver {
     this.todoRepository = todoRepository;
   }
 
-  public Todo getTodo(Long id) {
+  public Todo todo(Long id) {
     return todoRepository.findById(id).orElse(null);
   }
 
-  public List<Todo> getTodos() {
+  public List<Todo> todos() {
     return todoRepository.findAll();
   }
 }

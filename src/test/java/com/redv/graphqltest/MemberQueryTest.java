@@ -38,7 +38,7 @@ public class MemberQueryTest extends BaseIntegrationTest {
 
     assertTrue(response.isOk());
 
-    assertEquals("1", response.get("$.data.getMember.id"));
-    assertEquals("Marc", response.get("$.data.getMember.name"));
+    assertEquals("1", response.get("$.data.member.id"));
+    assertEquals("Marc", response.get("$.data.member.name"));
   }
 }

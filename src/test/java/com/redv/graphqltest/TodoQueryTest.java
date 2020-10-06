@@ -38,8 +38,8 @@ public class TodoQueryTest extends BaseIntegrationTest {
 
     assertTrue(response.isOk());
 
-    assertEquals("1", response.get("$.data.getTodo.id"));
-    assertEquals("Get Stuff Done", response.get("$.data.getTodo.text"));
-    assertEquals("false", response.get("$.data.getTodo.completed"));
+    assertEquals("1", response.get("$.data.todo.id"));
+    assertEquals("Get Stuff Done", response.get("$.data.todo.text"));
+    assertEquals("false", response.get("$.data.todo.completed"));
   }
 }

@@ -1,26 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ApolloProvider } from '@apollo/client';
+import client from './apolloClient';
+import Todos from './Todos';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <ApolloProvider client={client}>
+      <div className="App">
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          To dos, powered by React, GraphQL, and Apollo.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      </div>
+      <Todos/>
+    </ApolloProvider>
   );
-}
+};
 
 export default App;
