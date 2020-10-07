@@ -7,7 +7,7 @@ interface MyProps {
 }
 
 export const COMPLETE_TODO = gql`
-    mutation completeTodo($id: Int!){
+    mutation completeTodo($id: Int!) {
         completeTodo(id: $id) {
             id
             text
@@ -16,9 +16,20 @@ export const COMPLETE_TODO = gql`
     }
 `;
 
+export const DELETE_TODO = gql`
+    mutation deleteTodo($id: Int!) {
+        deleteTodo(id: $id) {
+            id
+            text
+            completed
+        }
+    }
+`
+
 const TodoRow: React.FC<MyProps> = ({ todo }) => {
   const { id, text, completed } = todo;
   const [ completeTodo ] = useMutation(COMPLETE_TODO);
+  const [ deleteTodo ] = useMutation(DELETE_TODO);
 
   return (
     <tr key={id}>
@@ -33,6 +44,11 @@ const TodoRow: React.FC<MyProps> = ({ todo }) => {
           completeTodo({ variables: { id: id } })
         }}>
           toggle
+        </button>
+        <button onClick={() => {
+          deleteTodo({ variables: { id: id } })
+        }}>
+          delete
         </button>
       </td>
     </tr>

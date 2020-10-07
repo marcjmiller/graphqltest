@@ -57,7 +57,7 @@ const TodoInput: React.FC = () => {
         <button type={'submit'}>add</button>
       </form>
       {mutationLoading && <p>Mutation Submitting...</p>}
-      {mutationError && <p>Mutation Error, see console :(</p> && console.log(mutationError.message)}
+      {mutationError && <p>Mutation Error, see console :(</p>}
     </div>
   );
 };
