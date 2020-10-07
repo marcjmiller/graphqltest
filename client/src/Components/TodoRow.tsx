@@ -24,7 +24,7 @@ export const DELETE_TODO = gql`
             completed
         }
     }
-`
+`;
 
 const TodoRow: React.FC<MyProps> = ({ todo }) => {
   const { id, text, completed } = todo;
@@ -37,16 +37,17 @@ const TodoRow: React.FC<MyProps> = ({ todo }) => {
         {text}
       </td>
       <td data-testid={'todo-completed'}>
-        <input type={'checkbox'} name={'completed'} checked={completed} readOnly/>
+        <input type={'checkbox'}
+               name={'completed'}
+               checked={completed}
+               onChange={() => {
+                 completeTodo({ variables: { id: id } });
+               }}
+        />
       </td>
       <td>
         <button onClick={() => {
-          completeTodo({ variables: { id: id } })
-        }}>
-          toggle
-        </button>
-        <button onClick={() => {
-          deleteTodo({ variables: { id: id } })
+          deleteTodo({ variables: { id: id } });
         }}>
           delete
         </button>

@@ -27,12 +27,13 @@ const TodoTable: React.FC = () => {
       {loading ? <p>Loading ...</p> :
         error ? <p>Uh oh! {error.message}</p> :
           data && data.todos !== undefined ?
-            <div>
+            <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
               <table>
                 <thead>
                 <tr>
                   <th>Text</th>
                   <th>Completed</th>
+                  <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
