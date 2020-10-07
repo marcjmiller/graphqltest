@@ -1,31 +1,23 @@
 package com.redv.graphqltest.resolver;
 
-import com.redv.graphqltest.models.Todo;
-import com.redv.graphqltest.repo.TodoRepository;
+import com.redv.graphqltest.model.Todo;
+import com.redv.graphqltest.service.TodoService;
 import graphql.kickstart.tools.GraphQLQueryResolver;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Component
+@AllArgsConstructor
 public class TodoResolver implements GraphQLQueryResolver {
-  @Autowired
-  private TodoRepository todoRepository;
+  private final TodoService todoService;
 
-  @Autowired
-  public void setTodoRepository(TodoRepository todoRepository) {
-    this.todoRepository = todoRepository;
-  }
-
-  @Transactional
   public Todo todo(Long id) {
-    return todoRepository.findById(id).orElse(null);
+    return todoService.getTodo(id);
   }
 
-  @Transactional
   public List<Todo> todos() {
-    return todoRepository.findAll();
+    return todoService.getTodos();
   }
 }

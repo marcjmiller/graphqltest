@@ -1,4 +1,4 @@
-package com.redv.graphqltest.exceptions;
+package com.redv.graphqltest.exception;
 
 public class TodoNotFoundException extends RuntimeException {
 }

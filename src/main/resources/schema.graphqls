@@ -28,8 +28,8 @@ type Query {
 type Mutation {
     createTodo(input: CreateTodoInput!): Todo!
     completeTodo(id: Int!): Todo!
-    deleteTodo(id: Int!): Int!
+    deleteTodo(id: Int!): Todo!
 
     createMember(input: CreateMemberInput!): Member!
-    deleteMember(id: Int!): Int!
+    deleteMember(id: Int!): Member!
 }

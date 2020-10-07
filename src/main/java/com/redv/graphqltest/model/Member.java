@@ -1,4 +1,4 @@
-package com.redv.graphqltest.models;
+package com.redv.graphqltest.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

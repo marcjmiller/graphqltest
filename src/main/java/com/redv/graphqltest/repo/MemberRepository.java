@@ -1,6 +1,6 @@
 package com.redv.graphqltest.repo;
 
-import com.redv.graphqltest.models.Member;
+import com.redv.graphqltest.model.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

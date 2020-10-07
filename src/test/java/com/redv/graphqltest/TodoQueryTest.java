@@ -3,14 +3,12 @@ package com.redv.graphqltest;
 import com.graphql.spring.boot.test.GraphQLResponse;
 import com.graphql.spring.boot.test.GraphQLTest;
 import com.graphql.spring.boot.test.GraphQLTestTemplate;
-import com.redv.graphqltest.models.Todo;
-import com.redv.graphqltest.repo.MemberRepository;
-import com.redv.graphqltest.repo.TodoRepository;
+import com.redv.graphqltest.model.Todo;
+import com.redv.graphqltest.service.MemberService;
+import com.redv.graphqltest.service.TodoService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
-
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -23,16 +21,15 @@ public class TodoQueryTest extends BaseIntegrationTest {
   private GraphQLTestTemplate graphQLTestTemplate;
 
   @MockBean
-  private MemberRepository memberRepository;
+  private MemberService memberServiceMock;
 
   @MockBean
-  private TodoRepository todoRepository;
+  private TodoService todoServiceMock;
 
   @Test
   public void getTodoById() throws Exception {
     Todo todo = new Todo(1L, "Get Stuff Done", false);
-    when(todoRepository.findById(any()))
-      .thenReturn(Optional.of(todo));
+    when(todoServiceMock.getTodo(any())).thenReturn(todo);
 
     GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/get-todo-by-id.graphql");
 
