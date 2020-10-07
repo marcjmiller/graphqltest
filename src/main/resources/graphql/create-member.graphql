@@ -1,0 +1,6 @@
+mutation createMember {
+    createMember(input: {name: "Stu"}) {
+        id
+        name
+    }
+}

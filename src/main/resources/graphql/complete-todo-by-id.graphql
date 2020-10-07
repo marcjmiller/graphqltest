@@ -1,0 +1,7 @@
+mutation completeTodo {
+    completeTodo(id: 1) {
+        id
+        text
+        completed
+    }
+}
