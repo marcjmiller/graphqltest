@@ -28,8 +28,8 @@ public class TodoMutationTest extends BaseIntegrationTest {
   @MockBean
   TodoService todoServiceMock;
 
-  static CreateTodoInput input = new CreateTodoInput("New Todo");
-  static Todo todo = new Todo(1L, "New Todo", false);
+  static CreateTodoInput input = new CreateTodoInput("New TodoRow");
+  static Todo todo = new Todo(1L, "New TodoRow", false);
 
   @BeforeEach
   public void setUp() {
@@ -43,7 +43,7 @@ public class TodoMutationTest extends BaseIntegrationTest {
 
     System.out.println(response.getRawResponse());
     assertTrue(response.isOk());
-    assertEquals("New Todo", response.get("$.data.createTodo.text"));
+    assertEquals("New TodoRow", response.get("$.data.createTodo.text"));
   }
 
   @Test
@@ -62,6 +62,6 @@ public class TodoMutationTest extends BaseIntegrationTest {
     GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/delete-todo-by-id.graphql");
 
     assertTrue(response.isOk());
-    assertEquals("New Todo", response.get("$.data.deleteTodo.text"));
+    assertEquals("New TodoRow", response.get("$.data.deleteTodo.text"));
   }
 }

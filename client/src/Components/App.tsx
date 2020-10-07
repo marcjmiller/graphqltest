@@ -1,7 +1,7 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/client';
-import client from './apolloClient';
-import TodoTable from './Components/TodoTable';
+import client from '../apolloClient';
+import TodoTable from './TodoTable';
 
 const App = () => {
   return (

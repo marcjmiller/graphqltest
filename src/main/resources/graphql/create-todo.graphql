@@ -1,5 +1,5 @@
 mutation createTodo {
-    createTodo(input: {text: "New Todo"}) {
+    createTodo(input: {text: "New TodoRow"}) {
         id
         text
         completed
