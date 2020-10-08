@@ -1,12 +1,13 @@
-import TodoTable, { TODO_QUERY } from '../Components/TodoTable';
+import TodoTable from '../Components/TodoTable';
 import React from 'react';
 import { render, cleanup, findByTestId, waitForElement } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
+import { FETCH_TODOS } from '../Queries/FETCH_TODOS';
 
 const mocks = [
   {
     request: {
-      query: TODO_QUERY,
+      query: FETCH_TODOS,
     },
     result: {
       data: {

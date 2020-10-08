@@ -1,33 +1,24 @@
 import React from 'react';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import TodoRow from './TodoRow';
 import TodoModel from '../Models/TodoModel';
 import TodoInput from './TodoInput';
+import { FETCH_TODOS } from '../Queries/FETCH_TODOS';
 
-interface TodoData {
+export interface TodoData {
   todos: Array<TodoModel>;
 }
 
-export const TODO_QUERY = gql`
-    query getTodos{
-        todos {
-            id
-            text
-            completed
-        }
-    }
-`;
-
 const TodoTable: React.FC = () => {
-  const { loading, error, data } = useQuery<TodoData>(TODO_QUERY);
+  const { loading, error, data } = useQuery<TodoData>(FETCH_TODOS);
 
   return (
-    <div>
+    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', flexDirection: 'column'}}>
       <h3>To Do</h3>
       {loading ? <p>Loading ...</p> :
         error ? <p>Uh oh! {error.message}</p> :
           data && data.todos !== undefined ?
-            <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
               <table>
                 <thead>
                 <tr>

@@ -14,7 +14,7 @@ code {
 
 table {
   align-self: center;
-  width: 30%;
+  width: 350px;
   border: 1px solid black;
   border-collapse: collapse;
 }
@@ -25,4 +25,11 @@ table th {
 
 table td {
   border-bottom: 1px solid black;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

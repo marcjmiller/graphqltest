@@ -1,9 +1,10 @@
-import TodoRow, { COMPLETE_TODO } from '../Components/TodoRow';
+import TodoRow from '../Components/TodoRow';
 import { render } from '@testing-library/react';
 import React from 'react';
 import TodoModel from '../Models/TodoModel';
-import { TODO_QUERY } from '../Components/TodoTable';
 import { MockedProvider } from '@apollo/client/testing';
+import { FETCH_TODOS } from '../Queries/FETCH_TODOS';
+import { COMPLETE_TODO } from '../Mutations/COMPLETE_TODO';
 
 const mocks = [
   {

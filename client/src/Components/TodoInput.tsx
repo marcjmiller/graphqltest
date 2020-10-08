@@ -1,15 +1,6 @@
 import { gql, useMutation } from '@apollo/client';
 import React, { useState } from 'react';
-
-export const ADD_TODO = gql`
-    mutation createTodo($text: String!) {
-        createTodo(input: {text: $text}) {
-            id
-            text
-            completed
-        }
-    }
-`;
+import { ADD_TODO } from '../Mutations/ADD_TODO';
 
 const TodoInput: React.FC = () => {
   const [ todoInput, setTodoInput ] = useState('');
@@ -45,16 +36,18 @@ const TodoInput: React.FC = () => {
       <form
         onSubmit={e => {
           e.preventDefault();
-          createTodo({ variables: { text: todoInput } });
-          setTodoInput('');
+          if (todoInput !== '') {
+            createTodo({ variables: { text: todoInput } });
+            setTodoInput('');
+          }
         }}
       >
         <input
           value={todoInput}
           onChange={(e) => setTodoInput(e.target.value)}
-          placeholder={'TodoRow text'}
+          placeholder={'New todo text'}
         />
-        <button type={'submit'}>add</button>
+        <button type={'submit'} disabled={todoInput === ''}>add</button>
       </form>
       {mutationLoading && <p>Mutation Submitting...</p>}
       {mutationError && <p>Mutation Error, see console :(</p>}

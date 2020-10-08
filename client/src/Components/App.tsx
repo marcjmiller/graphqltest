@@ -7,9 +7,10 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <div className="App">
-        <p>
-          To dos, powered by React, GraphQL, and Apollo.
-        </p>
+        <h2>
+          A to do list powered by GraphQL, Typescript, Apollo, and React.
+        </h2>
+        <img src={'gtar-logos.png'} alt={'logos'}/>
       </div>
       <TodoTable/>
     </ApolloProvider>

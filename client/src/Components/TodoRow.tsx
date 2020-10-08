@@ -1,35 +1,23 @@
 import React from 'react';
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import TodoModel from '../Models/TodoModel';
+import { COMPLETE_TODO } from '../Mutations/COMPLETE_TODO';
+import { DELETE_TODO } from '../Mutations/DELETE_TODO';
 
 interface MyProps {
   todo: TodoModel;
 }
 
-export const COMPLETE_TODO = gql`
-    mutation completeTodo($id: Int!) {
-        completeTodo(id: $id) {
-            id
-            text
-            completed
-        }
-    }
-`;
-
-export const DELETE_TODO = gql`
-    mutation deleteTodo($id: Int!) {
-        deleteTodo(id: $id) {
-            id
-            text
-            completed
-        }
-    }
-`;
-
 const TodoRow: React.FC<MyProps> = ({ todo }) => {
   const { id, text, completed } = todo;
   const [ completeTodo ] = useMutation(COMPLETE_TODO);
-  const [ deleteTodo ] = useMutation(DELETE_TODO);
+  const [ deleteTodo ] = useMutation(DELETE_TODO, {
+                                       update(cache, { data }) {
+                                         const deletedTodoId = 'Todo:' + data.deleteTodo.id.toString();
+                                         cache.evict({ id: deletedTodoId });
+                                       },
+                                     },
+  );
 
   return (
     <tr key={id}>
