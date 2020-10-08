@@ -1,3 +1,11 @@
-**GraphQL Testing for RedV**
+# GraphQL/Apollo Test Todo app
+### A simple To Do app to test the features of Apollo and GraphQL on top of Springboot.
 
-Simple project to test feasability of utilizing GraphQL vs our typical API.
+##### This simple project was to test feasibility of utilizing GraphQL/Apollo vs REST/Redux for our next application.
+
+![Screenshot](TodoApp.png)
+
+Project Github:
+http://github.com/marcjmiller/graphqltest
+
+My Github: http://github.com/marcjmiller
