@@ -3,6 +3,7 @@ import { useMutation } from '@apollo/client';
 import TodoModel from '../Models/TodoModel';
 import { COMPLETE_TODO } from '../Mutations/COMPLETE_TODO';
 import { DELETE_TODO } from '../Mutations/DELETE_TODO';
+import { Button, Checkbox, TableCell, TableRow, Typography } from '@material-ui/core';
 
 interface MyProps {
   todo: TodoModel;
@@ -20,27 +21,32 @@ const TodoRow: React.FC<MyProps> = ({ todo }) => {
   );
 
   return (
-    <tr key={id}>
-      <td data-testid={'todo-text'}>
-        {text}
-      </td>
-      <td data-testid={'todo-completed'}>
-        <input type={'checkbox'}
-               name={'completed'}
-               checked={completed}
-               onChange={() => {
-                 completeTodo({ variables: { id: id } });
-               }}
+    <TableRow key={id} hover>
+      <TableCell data-testid={'todo-text'} align={'left'}>
+        <Typography>{text}</Typography>
+      </TableCell>
+      <TableCell data-testid={'todo-completed'} align={'center'}>
+        <Checkbox
+          name={'completed'}
+          checked={completed}
+          onChange={() => {
+            completeTodo({ variables: { id: id } });
+          }}
         />
-      </td>
-      <td>
-        <button onClick={() => {
-          deleteTodo({ variables: { id: id } });
-        }}>
+      </TableCell>
+      <TableCell align={'center'}>
+        <Button
+          onClick={() => {
+            deleteTodo({ variables: { id: id } });
+          }}
+          color={'primary'}
+          variant={'contained'}
+          fullWidth={true}
+        >
           delete
-        </button>
-      </td>
-    </tr>
+        </Button>
+      </TableCell>
+    </TableRow>
   );
 };
 

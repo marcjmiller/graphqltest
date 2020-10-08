@@ -1,11 +1,13 @@
 import { gql, useMutation } from '@apollo/client';
 import React, { useState } from 'react';
 import { ADD_TODO } from '../Mutations/ADD_TODO';
+import { Button, Snackbar, TableCell, TableRow, TextField } from '@material-ui/core';
 
 const TodoInput: React.FC = () => {
   const [ todoInput, setTodoInput ] = useState('');
+  const [ open, setOpen ] = useState(false);
 
-  const [ createTodo, { loading: mutationLoading, error: mutationError } ] = useMutation(ADD_TODO, {
+  const [ createTodo, { error: mutationError } ] = useMutation(ADD_TODO, {
     update(cache, { data: { createTodo } }) {
       cache.modify(
           {
@@ -31,27 +33,59 @@ const TodoInput: React.FC = () => {
     },
   });
 
+  const handleAddTodo = () => {
+    if (todoInput !== '') {
+      createTodo({ variables: { text: todoInput } });
+      setTodoInput('');
+    }
+  };
+
+  const handleClose = (event: any, reason: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   return (
-    <div>
-      <form
-        onSubmit={e => {
-          e.preventDefault();
-          if (todoInput !== '') {
-            createTodo({ variables: { text: todoInput } });
-            setTodoInput('');
-          }
-        }}
-      >
-        <input
+    <TableRow>
+      <TableCell colSpan={2}>
+        <TextField
           value={todoInput}
-          onChange={(e) => setTodoInput(e.target.value)}
+          fullWidth={true}
+          onChange={(event) => setTodoInput(event.target.value)}
+          onKeyPress={event => {
+            if (event.key === 'Enter') {
+              handleAddTodo();
+            }
+          }}
           placeholder={'New todo text'}
         />
-        <button type={'submit'} disabled={todoInput === ''}>add</button>
-      </form>
-      {mutationLoading && <p>Mutation Submitting...</p>}
-      {mutationError && <p>Mutation Error, see console :(</p>}
-    </div>
+      </TableCell>
+      <TableCell>
+        <Button
+          disabled={todoInput === ''}
+          onClick={handleAddTodo}
+          color={'primary'}
+          variant={'contained'}
+          fullWidth={true}
+        >
+          add
+        </Button>
+      </TableCell>
+      <Snackbar
+        open={open}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        message={'Mutation Error, see console :('}
+        onClose={handleClose}
+        autoHideDuration={5000}
+      />
+      {mutationError && console.log(mutationError)}
+    </TableRow>
   );
 };
 

@@ -12,21 +12,6 @@ code {
     monospace;
 }
 
-table {
-  align-self: center;
-  width: 350px;
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-
-table th {
-  border-bottom: 2px solid black;
-}
-
-table td {
-  border-bottom: 1px solid black;
-}
-
 .App {
   display: flex;
   flex-direction: column;
