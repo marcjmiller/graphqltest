@@ -21,8 +21,9 @@
 1. Use Maven to start application `mvn spring-boot:run`
 1. Open a browser and navigate to http://localhost:8080
 
-##### Project Github
+##### Github
 http://github.com/marcjmiller/graphqltest
 
-##### My Github
-http://github.com/marcjmiller
+##### My Portfolio
+http://hire.mrmarcmiller.com
+
